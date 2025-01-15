@@ -1,41 +1,38 @@
 package application;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-// Para ser uma app JavaFX
-// tem que ser uma class q extends "Application"
+import java.util.Objects;
+
 public class Main extends Application {
-   // Application tem 3 Methods nela
-   // Sendo o Start Abstrato start (Obrigado a Implementar)
    @Override
    public void start(Stage primaryStage) {
-      // No start vem como arg o "Palco" > Stage
-
       try {
-         BorderPane root = new BorderPane(); // Criando um painel
-         Scene scene = new Scene(root, 400,400); // Criando uma cena para o palco
+         // Ao inves de cria um Painel Vazio
+         //BorderPane root = new BorderPane();
 
-         // Pegando os stylos do css
-         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
-         primaryStage.setScene(scene); // Associando o palco para a cena
-         primaryStage.show(); // Mostrando o conteudo do palco
+         // vou importa o nosso View do gui aqui:
+         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/gui/View.fxml")));
+
+         // Parent é uma Super Classe de AnchorPane por isso funciona normalmente com o UpCasting
+         // Sendo o Parent a classe mais generica que vai compor os nossos elementos da tela
+
+         // Indicando a Cena
+         Scene scene = new Scene(parent); // Não precisa mais especificar o tamanho
+         primaryStage.setScene(scene);
+         primaryStage.show();
 
       } catch (Exception e) {
          e.printStackTrace();
       }
    }
-   // metodos:
-   // Init > O que vau acontecer antes de iniciar o app
-   // Stop > O que vai acontecer dpos que para o app
 
-   // Aqui que comerça de fato a Applicação
    public static void main(String[] args) {
       launch(args);
-      // launch = Mthodo statico que tem na class application
-      // que serve para iniciar uma aplicação javaFX
    }
 }

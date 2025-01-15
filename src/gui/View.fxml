@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- A primeira linha é basicamenter o cabeçario do xml -->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!-- Importação da class AnchorPane ->
+ ele define um painel onde podemos colocar
+ objetos onde vai esta ancorado em certas possicçoes-->
+
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
+   <children>
+      <Button layoutX="170.0" layoutY="138.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="168.0" layoutY="115.0" text="Clikc here" />
+   </children>
+</AnchorPane>
