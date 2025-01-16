@@ -4,7 +4,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <!-- Importação da class AnchorPane ->
  ele define um painel onde podemos colocar
@@ -12,7 +14,19 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ViewController">
    <children>
-      <Button fx:id="btn" layoutX="170.0" layoutY="138.0" mnemonicParsing="false" onAction="#onBtnAction" text="Button" />
-      <Label layoutX="168.0" layoutY="115.0" text="Clikc here" />
+      <Label layoutX="96.0" layoutY="53.0" text="Cauculate  Sum">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNumber1" layoutX="110.0" layoutY="108.0" promptText="Frist Number" />
+      <TextField fx:id="txtNumber2" layoutX="110.0" layoutY="150.0" promptText="Secund Number" />
+      <Button fx:id="btnSum" layoutX="172.0" layoutY="198.0" mnemonicParsing="false" onAction="#onBtnSumAction" text="Sum" />
+      <Label layoutX="121.0" layoutY="259.0" prefHeight="16.0" prefWidth="74.0" text="Result =" />
+      <Label fx:id="labelResult" layoutX="182.0" layoutY="257.0" prefHeight="16.0" prefWidth="74.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -4,19 +4,41 @@ import gui.Util.Alerts;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+import java.util.Locale;
 
 public class ViewController {
 
    @FXML
-   private Button btn;
+   private TextField txtNumber1;
 
    @FXML
-   public void  onBtnAction(){
-      // Chamando o Alerts Aqui no Evento do Controller
+   private TextField txtNumber2;
 
-      Alerts.showAlert("Alert Title", null, "Hello", Alert.AlertType.ERROR);
+   @FXML
+   private Label labelResult;
 
-      // Alert.AlertType.INFORMATION = é um enum com algumas outras opções de tipos de alertas
-      // "Alert Header" = Podemos colocar como null para ter um alerta mais enxuto
+   @FXML
+   private Button btnSum;
+
+   @FXML
+   public void  onBtnSumAction(){
+      try {
+         Locale.setDefault(Locale.US); // Mudando a virgula / Ponto
+
+         //Pegando os Valores
+         double number1 = Double.parseDouble(txtNumber1.getText());
+         double number2 = Double.parseDouble(txtNumber2.getText());
+
+         //Somando os Valores
+         double sum = number1 + number2;
+
+         //Adicionando o valor ao labelResult
+         labelResult.setText(String.format("%.2f", sum));
+      }catch (NumberFormatException e) {
+         Alerts.showAlert("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+      }
    };
 }
