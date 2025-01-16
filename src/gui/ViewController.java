@@ -1,15 +1,20 @@
 package gui;
 
 import gui.Util.Alerts;
+import gui.Util.Constraints;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class ViewController {
+
+public class ViewController implements Initializable {
 
    @FXML
    private TextField txtNumber1;
@@ -41,4 +46,16 @@ public class ViewController {
          Alerts.showAlert("Error", null, e.getMessage(), Alert.AlertType.ERROR);
       }
    };
+
+   // Ira executar quando o controlador for criado
+   // url = caminho da tela
+   // ResourceBundle = recursos que podemos usar
+   @Override
+   public void initialize(URL url, ResourceBundle resourceBundle) {
+      // Aqui dentro Ações que serão inicializada na instanciação do nosso controlador
+      Constraints.setTextFieldDouble(txtNumber1);
+      Constraints.setTextFieldDouble(txtNumber2);
+      Constraints.setTextFieldMaxLength(txtNumber1, 5);
+      Constraints.setTextFieldMaxLength(txtNumber2, 5);
+   }
 }
