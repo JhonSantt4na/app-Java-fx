@@ -16,3 +16,13 @@
       <Button fx:id="btnAll" layoutX="159.0" layoutY="138.0" mnemonicParsing="false" onAction="#onBtnAllAction" prefHeight="25.0" prefWidth="82.0" text="All" />
    </children>
 </AnchorPane>
+
+
+        <!--
+AnchorPane = Ancora os Cantos do Obj ex: 20px do top
+GrindPane = Matrix ex excel
+SplitPane = Linha Divisoria
+VBox & HBox = Fica 1 abaixo do outro e o Hbox é horizontal
+BorderPane = tem as partes e vamos adicionando
+ScrollPane = Aparece o Scrol quando o componete é maior
+        -->
