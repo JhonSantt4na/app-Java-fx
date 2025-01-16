@@ -10,10 +10,9 @@
  ele define um painel onde podemos colocar
  objetos onde vai esta ancorado em certas possicçoes-->
 
-
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ViewController">
    <children>
-      <Button layoutX="170.0" layoutY="138.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="btn" layoutX="170.0" layoutY="138.0" mnemonicParsing="false" onAction="#onBtnAction" text="Button" />
       <Label layoutX="168.0" layoutY="115.0" text="Clikc here" />
    </children>
 </AnchorPane>
