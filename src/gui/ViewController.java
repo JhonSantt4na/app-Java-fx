@@ -1,61 +1,63 @@
 package gui;
 
-import gui.Util.Alerts;
-import gui.Util.Constraints;
+import Model.entities.Person;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
 public class ViewController implements Initializable {
+   // Criando um Atributo para associar com a tela
+   @FXML
+   private ComboBox<Person> comboBoxPerson;
 
    @FXML
-   private TextField txtNumber1;
+   private Button btnAll;
+
+   private ObservableList<Person> obsList;
+   // ObservableList = Lista especial que ja fica associada ao combobox e a coleção
 
    @FXML
-   private TextField txtNumber2;
-
-   @FXML
-   private Label labelResult;
-
-   @FXML
-   private Button btnSum;
-
-   @FXML
-   public void  onBtnSumAction(){
-      try {
-         Locale.setDefault(Locale.US); // Mudando a virgula / Ponto
-
-         //Pegando os Valores
-         double number1 = Double.parseDouble(txtNumber1.getText());
-         double number2 = Double.parseDouble(txtNumber2.getText());
-
-         //Somando os Valores
-         double sum = number1 + number2;
-
-         //Adicionando o valor ao labelResult
-         labelResult.setText(String.format("%.2f", sum));
-      }catch (NumberFormatException e) {
-         Alerts.showAlert("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+   public void onBtnAllAction() {
+      for (Person person : comboBoxPerson.getItems()){
+         System.out.println(person);
       }
-   };
+   }
 
-   // Ira executar quando o controlador for criado
-   // url = caminho da tela
-   // ResourceBundle = recursos que podemos usar
+   @FXML
+   public void onComboBoxPersonAction(){
+      Person person = comboBoxPerson.getSelectionModel().getSelectedItem(); // Pegando item que foi selecionado
+      System.out.println(person);
+   }
+
    @Override
    public void initialize(URL url, ResourceBundle resourceBundle) {
-      // Aqui dentro Ações que serão inicializada na instanciação do nosso controlador
-      Constraints.setTextFieldDouble(txtNumber1);
-      Constraints.setTextFieldDouble(txtNumber2);
-      Constraints.setTextFieldMaxLength(txtNumber1, 5);
-      Constraints.setTextFieldMaxLength(txtNumber2, 5);
+      // Criamos uma lista normal
+      List<Person> list = new ArrayList<>();
+      list.add(new Person(1, "Maria", "Maria@Gmail.com"));
+      list.add(new Person(2, "Joao", "Joao@Gmail.com"));
+      list.add(new Person(3, "Bob", "Bob@Gmail.com"));
+
+      // agr vamos instanciar o ObservableList aproveitando a lista normal
+      obsList = FXCollections.observableArrayList(list); // Passamos a lista normal na lista ObservableList
+      comboBoxPerson.setItems(obsList); // Carrega os elementos no combo box
+
+      Callback<ListView<Person>, ListCell<Person>> factory = lv -> new ListCell<Person>() {
+         @Override
+         protected void updateItem(Person item, boolean empty) {
+            super.updateItem(item, empty);
+            setText(empty ? "" : item.getName());
+         }
+      };
+      comboBoxPerson.setCellFactory(factory);
+      comboBoxPerson.setButtonCell(factory.call(null));
    }
 }
